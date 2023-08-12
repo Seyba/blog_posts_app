@@ -1,8 +1,8 @@
-import { useSelector, useDispatch } from "react-redux";
-import PostItem from "./PostItem";
-
-import { useEffect } from "react";
-import {fetchPosts} from '../redux/slices/postsSlice';
+import { useSelector, useDispatch } from "react-redux"
+import PostItem from "./PostItem"
+import { Spinner } from "./Spinner"
+import { useEffect } from "react"
+import {deleteAllPosts, fetchPosts} from '../redux/slices/postsSlice'
 
 export default function PostsList() {
   const posts = useSelector((state) => state.posts);
@@ -18,10 +18,15 @@ export default function PostsList() {
       <h1>Posts List</h1>
 
       <section>
+        <button onClick={() => dispatch(deleteAllPosts())}>Remove All</button>
         {posts.length ? (
           posts.map((post) => <PostItem post={post} key={post.id} />)
         ) : (
-          <h3>Loading...</h3>
+            <div>
+              <h2>Posts Loading... </h2>
+              <Spinner/>
+            </div>
+          
         )}
       </section>
       
