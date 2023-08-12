@@ -3,6 +3,7 @@ import PostItem from "./PostItem"
 import { Spinner } from "./Spinner"
 import { useEffect } from "react"
 import {deleteAllPosts, fetchPosts} from '../redux/slices/postsSlice'
+import { Modal } from "./Modal"
 
 export default function PostsList() {
   const posts = useSelector((state) => state.posts);
@@ -19,6 +20,7 @@ export default function PostsList() {
 
       <section>
         <button onClick={() => dispatch(deleteAllPosts())}>Remove All</button>
+        <Modal posts = {posts}/>
         {posts.length ? (
           posts.map((post) => <PostItem post={post} key={post.id} />)
         ) : (
