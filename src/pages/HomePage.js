@@ -9,6 +9,7 @@ export default function HomePage() {
             <h1>Home Page Component</h1>
             <AddPostForm />
             <PostsList />
+            
         </main>
     );
 }
